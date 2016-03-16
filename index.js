@@ -1,4 +1,5 @@
-var ejs = require('ejs');
+var ejs = require('ejs'),
+    fs  = require('fs');
 
 /**
  * Constructor for the tiler-xyz 
@@ -7,7 +8,7 @@ var ejs = require('ejs');
  * @class
  */
 function tiler(path) {
-    this._tmpl = ejs.compile('<%- '+path+' %>');
+    this._tmpl = ejs.compile(path);
 }
 
 /**
@@ -18,8 +19,8 @@ function tiler(path) {
  *  data         : {Buffer}
  * }
  * @param {Number} x - tile x coordinate.
- * @param {Number} x - tile x coordinate.
- * @param {Number} x - tile x coordinate.
+ * @param {Number} y - tile y coordinate.
+ * @param {Number} z - tile z coordinate.
  * @param {Function(error, tile)} callback - tile x coordinate.
  * @return  {Object} tile data.
  */
@@ -29,14 +30,14 @@ tiler.prototype.getTile=function(x,y,z, callback) {
         'y':y,
         'z':z
     });
-    fs.stat(filepath, function(err1, stats) {
-        if (err1) {
-            callback(err1);
+    fs.stat(filepath, function(error, stats) {
+        if (error) {
+            callback(error);
             return;
         }    
-        fs.readFile(filepath, function(err2, data) {
-            if (err2) {
-                callback(err2);
+        fs.readFile(filepath, function(error, data) {
+            if (error) {
+                callback(error);
                 return;
             }
             callback(null, {
