@@ -2,7 +2,16 @@ var Tiler = require('../index'),
     fs = require('fs'),
     assert = require('assert');
 
-var tiler = new Tiler(__dirname+'/sample/<%- z %>/<%- parseInt(x/10) %>/<%- parseInt(y/10) %>/<%- x %>_<%- y %>.png');
+var tiler = new Tiler(
+    __dirname+'/sample/{{z}}/{{#shorten}}{{x}}{{/shorten}}/{{#shorten}}{{y}}{{/shorten}}/{{x}}_{{y}}.png', 
+    {
+        shorten:function() {
+            return function(text, render) {
+                return parseInt(parseInt(render(text))/10)
+            }
+        }        
+    }
+);
 
 tiler.getTile(53, 25, 6, function(error, tile) {
     if (error) {

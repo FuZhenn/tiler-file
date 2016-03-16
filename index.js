@@ -1,14 +1,16 @@
-var ejs = require('ejs'),
+var Mustache = require('mustache'),
     fs  = require('fs');
 
 /**
  * Constructor for the tiler-xyz 
  * 
- * @param {String} path - the path expression of the tile file
+ * @param {String} pattern - the mustache expression of the tile path
  * @class
  */
-function tiler(path) {
-    this._tmpl = ejs.compile(path);
+function tiler(template, hash) {
+    this._template = template;
+    this._hash = hash;
+    Mustache.parse(this._template);
 }
 
 /**
@@ -25,11 +27,16 @@ function tiler(path) {
  * @return  {Object} tile data.
  */
 tiler.prototype.getTile=function(x,y,z, callback) {
-    var filepath = this._tmpl({
-        'x':x,
-        'y':y,
-        'z':z
-    });
+    var hash = {};
+    if (this._hash) {
+        for (var p in this._hash) {
+            hash[p] = this._hash[p];
+        }    
+    }    
+    hash.x = x;
+    hash.y = y;
+    hash.z = z;
+    var filepath = Mustache.render(this._template, hash);
     fs.stat(filepath, function(error, stats) {
         if (error) {
             callback(error);
