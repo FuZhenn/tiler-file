@@ -10,6 +10,16 @@ Because the path rule to store tile files is arbitrary, a path template phrase i
 
 [Ejs](https://github.com/mde/ejs) is used here as the template engine. You can see how to use it in the example below.
 
+## See also
+[tiler-mbtiles](https://github.com/FuZhenn/tiler-mbtiles)
+A nodejs map tile reader for mapbox mbtiles format.
+
+[tiler-arcgis-xyz](https://github.com/FuZhenn/tiler-arcgis-xyz)
+A nodejs map tile reader for exploded tiles by ESRI ArcGIS
+
+[tiler-arcgis-compact](https://github.com/FuZhenn/tiler-arcgis-compact)
+A nodejs map tile reader for compact tiles by ESRI ArcGIS
+
 ## Install
 
 ```bash
