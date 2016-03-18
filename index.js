@@ -1,16 +1,14 @@
-var Mustache = require('mustache'),
+var template = require('lodash.template'),
     fs  = require('fs');
 
 /**
  * Constructor for the tiler-xyz 
  * 
- * @param {String} pattern - the mustache expression of the tile path
+ * @param {String} path - the underscore template expression of the tile path
  * @class
  */
-function tiler(template, hash) {
-    this._template = template;
-    this._hash = hash;
-    Mustache.parse(this._template);
+function tiler(path) {
+    this._template = template(path);    
 }
 
 /**
@@ -27,16 +25,11 @@ function tiler(template, hash) {
  * @return  {Object} tile data.
  */
 tiler.prototype.getTile=function(x,y,z, callback) {
-    var hash = {};
-    if (this._hash) {
-        for (var p in this._hash) {
-            hash[p] = this._hash[p];
-        }    
-    }    
-    hash.x = x;
-    hash.y = y;
-    hash.z = z;
-    var filepath = Mustache.render(this._template, hash);
+    var filepath = this._template({
+        'x' : x,
+        'y' : y,
+        'z' : z
+    });
     fs.stat(filepath, function(error, stats) {
         if (error) {
             callback(error);
