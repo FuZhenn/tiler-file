@@ -11,8 +11,6 @@ Because the path rule to store tile files is arbitrary, a path template phrase i
 [lodash](https://github.com/lodash/lodash) is used here as the template engine. You can see how to use it in the example below.
 
 ## See Also
-[tiler-mbtiles](https://github.com/FuZhenn/tiler-mbtiles):
-a nodejs map tile reader for mapbox mbtiles format.
 
 [tiler-arcgis-file](https://github.com/FuZhenn/tiler-arcgis-file):
 a nodejs map tile reader for exploded tiles by ESRI ArcGIS
@@ -30,7 +28,7 @@ npm install tiler-file
 
 ```javascript
 var Tiler = require('tiler-file');
-//template of the file path, we.
+//template of the file path, lodash's template is used here.
 //x, y, z is the tile's coordinate values.
 var tiler = new Tiler(
     __dirname+'/sample/<%- z %>/<%- parseInt(x/10) %>/<%- parseInt(y/10) %>/<%- x %>_<%- y %>.png'
