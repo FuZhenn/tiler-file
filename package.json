@@ -1,6 +1,6 @@
 {
   "name": "tiler-file",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A map tile file reader coordinating by X,Y,Z",
   "license": "MIT",
   "repository": {
