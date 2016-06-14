@@ -1,5 +1,5 @@
 # tiler-file
-[![Circle CI](https://circleci.com/gh/FuZhenn/tiler-file.svg?style=svg)](https://circleci.com/gh/FuZhenn/tiler-file)
+[![Circle CI](https://circleci.com/gh/fuzhenn/tiler-file.svg?style=svg)](https://circleci.com/gh/fuzhenn/tiler-file)
 
 A nodejs map tile file reader coordinating by X,Y,Z.
 
@@ -12,10 +12,10 @@ Because the path rule to store tile files is arbitrary, a path template phrase i
 
 ## See Also
 
-[tiler-arcgis-file](https://github.com/FuZhenn/tiler-arcgis-file):
+[tiler-arcgis-file](https://github.com/fuzhenn/tiler-arcgis-file):
 a nodejs map tile reader for exploded tiles by ESRI ArcGIS
 
-[tiler-arcgis-bundle](https://github.com/FuZhenn/tiler-arcgis-bundle):
+[tiler-arcgis-bundle](https://github.com/fuzhenn/tiler-arcgis-bundle):
 a nodejs map tile reader for compact tiles by ESRI ArcGIS 10.0-10.2
 
 ## Install
